@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SideBar = ({ channels, people, onChannelSelect }) => (
+const SideBar = ({ channels, people, onChannelSelect, onPersonSelect }) => (
     <div className='side-bar'>  
         <div className='bar-control'>
             <h4>CHANNELS</h4>
@@ -11,7 +11,9 @@ const SideBar = ({ channels, people, onChannelSelect }) => (
         <div className='bar-control'>
             <h4>PEOPLE</h4>
             {people.map(person => (
-                <div key={person.id}># {person.name}</div>
+                <div key={person.id} onClick={()=> onPersonSelect(person.id)}>
+                    {person.name}
+                </div>
             ))}
         </div>
     </div>

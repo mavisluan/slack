@@ -14,9 +14,14 @@
 }
 
 .bar-control div {
-  padding-bottom: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
+.bar-control div.selected {
+  background-color: orange;
+  color:  #364A73;
+}
 .board {
   margin-left: 20px;
   display: flex;

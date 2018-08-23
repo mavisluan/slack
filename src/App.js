@@ -8,27 +8,33 @@ import { channels, people, createFakeActivity } from './static-data'
 class App extends Component {
   state = {
     MessagesByChannelId: [],
-    MessagesByPersonId: []
+    MessagesByPersonId: [],
+    activeButton: ''
   }
 
-  handleChannelSelection = (id) => {
+  handleChannelSelection = (channel) => {
     const channelsMessages = createFakeActivity(channels, 12)
+    const { id, name } = channel
     this.setState({
       MessagesByChannelId: channelsMessages[id],
-      MessagesByPersonId: [] 
+      MessagesByPersonId: [],
+      activeButton: name
     })
   }
 
-  handlePersonSelection = (id) => {
+  handlePersonSelection = (person) => {
     const peopleMessages = createFakeActivity(people, 6)
+    const { id, name } = person
     this.setState({
       MessagesByPersonId: peopleMessages[id],
-      MessagesByChannelId: []
+      MessagesByChannelId: [],
+      activeButton: name
     })
   }
 
   render() {
-    const { MessagesByChannelId, MessagesByPersonId } = this.state
+    const { MessagesByChannelId, MessagesByPersonId, activeButton } = this.state
+
     return (
       <div className="app">
         <SideBar 
@@ -36,6 +42,7 @@ class App extends Component {
           people={people}
           onChannelSelect={this.handleChannelSelection}
           onPersonSelect={this.handlePersonSelection}
+          activeButton={activeButton}
         />        
         <div className='board'>
           <ChannelMessages messages={MessagesByChannelId}/>

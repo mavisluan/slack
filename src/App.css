@@ -1,3 +1,7 @@
+.app {
+  display: flex;
+  flex-direction: row;
+}
 .side-bar {
   background-color: #364A73;
   height: 800px;
@@ -11,4 +15,31 @@
 
 .bar-control div {
   padding-bottom: 8px;
+}
+
+.board {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
+
+.message-info {
+  display: flex;
+  margin-top: 10px;
+}
+
+.image {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

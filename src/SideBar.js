@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SideBar = ({ channels, people }) => (
+const SideBar = ({ channels, people, onChannelSelect }) => (
     <div className='side-bar'>  
         <div className='bar-control'>
             <h4>CHANNELS</h4>
             {channels.map(channel => (
-                <div key={channel.id}># {channel.name}</div>
+                <div onClick={()=> onChannelSelect(channel.id)}key={channel.id}># {channel.name}</div>
             ))}
             </div>
         <div className='bar-control'>

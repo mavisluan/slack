@@ -22,6 +22,14 @@
   background-color: orange;
   color:  #364A73;
 }
+
+.select-reminder {
+  font-size: 30px;
+  color: darkcyan;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
 .board {
   margin-left: 20px;
   display: flex;

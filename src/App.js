@@ -32,8 +32,32 @@ class App extends Component {
     })
   }
 
+  renderMessages = ( ) => {
+    const { activeButton, MessagesByChannelId, MessagesByPersonId } = this.state
+    // let messages;
+    // if (channels.find(channel => channel.name === activeButton)) {
+    //   messages = MessagesByChannelId
+    // }
+    // if (people.find(person => person.name === activeButton)) {
+    //   messages = MessagesByPersonId
+    // }  
+    if (!activeButton) {
+      return (
+        <div className='select-reminder'>
+          Please selecte a channel or user from left.
+        </div>
+      )
+    } else {
+      return (
+        <div className='board'>
+          <ChannelMessages messages={MessagesByChannelId} />
+          <PersonMessages messages={MessagesByPersonId} />
+        </div>
+      )
+    }
+  }
   render() {
-    const { MessagesByChannelId, MessagesByPersonId, activeButton } = this.state
+    const { activeButton } = this.state
 
     return (
       <div className="app">
@@ -43,11 +67,8 @@ class App extends Component {
           onChannelSelect={this.handleChannelSelection}
           onPersonSelect={this.handlePersonSelection}
           activeButton={activeButton}
-        />        
-        <div className='board'>
-          <ChannelMessages messages={MessagesByChannelId}/>
-          <PersonMessages messages={MessagesByPersonId} />
-        </div>
+        />
+        {this.renderMessages()}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 const channels = [
     { id: 1, name: 'react' },
-    { id: 2, name: 'redux', hasUnreads: true },
+    { id: 2, name: 'redux' },
     { id: 3, name: 'mobx' },
     { id: 4, name: 'react-router' }
   ];

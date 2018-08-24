@@ -1,12 +1,12 @@
 .app {
   display: flex;
-  flex-direction: row;
 }
 .side-bar {
   background-color: #364A73;
-  height: 800px;
-  width: 260px;
+  height: 780px;
+  min-width: 260px;
   color: white;
+  overflow-y: auto;
 }
 
 .bar-control {
@@ -18,6 +18,11 @@
   padding-bottom: 4px;
 }
 
+.bar-control div:hover {
+  cursor: pointer;
+  color: darkorange
+}
+
 .bar-control div.selected {
   background-color: orange;
   color:  #364A73;
@@ -26,16 +31,23 @@
 .select-reminder {
   font-size: 30px;
   color: darkcyan;
-  margin-top: 50px;
-  margin-left: 20px;
 }
 
 .board {
-  margin-left: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  margin-bottom: 50px;
+  overflow-y: auto;
+  flex: 1;
+  margin: 20px 
+}
+
+.board input {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  height: 30px;
+  min-width: 700px;
+  position: absolute;
+  bottom: 5px
 }
 
 .message-info {

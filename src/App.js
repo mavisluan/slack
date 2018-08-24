@@ -52,6 +52,7 @@ class App extends Component {
         <div className='board'>
           <ChannelMessages messages={MessagesByChannelId} />
           <PersonMessages messages={MessagesByPersonId} />
+          <input type='text' />
         </div>
       )
     }
@@ -68,7 +69,8 @@ class App extends Component {
           onPersonSelect={this.handlePersonSelection}
           activeButton={activeButton}
         />
-        {this.renderMessages()}
+          {this.renderMessages()}
+        
       </div>
     );
   }

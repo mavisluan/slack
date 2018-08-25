@@ -1,9 +1,10 @@
 .app {
-  display: flex;
+  display: inline-flex;
+  flex: 1;
 }
 .side-bar {
   background-color: #364A73;
-  height: 780px;
+  min-height: 700px;
   min-width: 260px;
   color: white;
   overflow-y: auto;
@@ -29,6 +30,7 @@
 }
 
 .select-reminder {
+  align-self: center;
   font-size: 30px;
   color: darkcyan;
 }
@@ -38,16 +40,17 @@
   flex-direction: column;
   overflow-y: auto;
   flex: 1;
-  margin: 20px 
+  margin: 10px 
 }
 
-.board input {
+.input-box input {
   border: 1px solid darkgray;
   border-radius: 5px;
   height: 30px;
   min-width: 700px;
   position: absolute;
-  bottom: 5px
+  bottom: 0px;
+  font-size: 16px;
 }
 
 .message-info {

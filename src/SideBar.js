@@ -1,12 +1,12 @@
 import React from 'react'
 
-const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, activeButton }) => (
+const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, activeName }) => (
     <div className='side-bar'>  
         <div className='bar-control'>
             <h4>CHANNELS</h4>
             {channels.map(channel => (
                 <div 
-                    className={`${ activeButton === channel.name && 'selected'}`} 
+                    className={`${ activeName === channel.name && 'selected'}`} 
                     key={channel.id} 
                     onClick={()=> onChannelSelect(channel)}>
                     # {channel.name}
@@ -17,7 +17,7 @@ const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, activeButt
             <h4>PEOPLE</h4>
             {people.map(person => (
                 <div 
-                    className={`${activeButton === person.name && 'selected'}`}
+                    className={`${activeName === person.name && 'selected'}`}
                     key={person.id} 
                     onClick={()=> onPersonSelect(person)}>
                     {person.name}

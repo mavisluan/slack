@@ -1,6 +1,5 @@
 import React from 'react'
-
-const Messages = ({ messages }) => (
+const Messages = ({ messages, children }) => (
     <div>
         {messages.map( message => (
             <div className='message-info' key={message.id}>
@@ -17,7 +16,8 @@ const Messages = ({ messages }) => (
                     <div>{message.text}</div>
                 </div>
             </div>
-        ))} 
+        ))}
+        {children}
     </div>       
 )
 

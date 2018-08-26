@@ -17,8 +17,8 @@ const Messages = ({ messages, children }) => (
                 </div>
             </div>
         ))}
-        {children}
-    </div>       
+        <div>{children}</div>
+    </div> 
 )
-
+    
 export default Messages

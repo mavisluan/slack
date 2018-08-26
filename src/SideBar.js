@@ -1,14 +1,14 @@
 import React from 'react'
 
-const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, activeName }) => (
+const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, selectedChannelId, selectedPersonId }) => (
     <div className='side-bar'>  
         <div className='bar-control'>
             <h4>CHANNELS</h4>
             {channels.map(channel => (
                 <div 
-                    className={`${ activeName === channel.name && 'selected'}`} 
+                    className={`${ selectedChannelId === channel.id && 'selected'}`} 
                     key={channel.id} 
-                    onClick={()=> onChannelSelect(channel)}>
+                    onClick={()=> onChannelSelect(channel.id)}>
                     # {channel.name}
                 </div>
             ))}
@@ -17,9 +17,9 @@ const SideBar = ({ channels, people, onChannelSelect, onPersonSelect, activeName
             <h4>PEOPLE</h4>
             {people.map(person => (
                 <div 
-                    className={`${activeName === person.name && 'selected'}`}
+                    className={`${selectedPersonId === person.id && 'selected'}`}
                     key={person.id} 
-                    onClick={()=> onPersonSelect(person)}>
+                    onClick={()=> onPersonSelect(person.id)}>
                     {person.name}
                 </div>
             ))}

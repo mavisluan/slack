@@ -4,22 +4,7 @@ import SideBar from './SideBar'
 import MessageInput from './MessageInput'
 import Messages from './Messages'
 import { channels, people, createFakeActivity } from './static-data'
-
-
-function nextId(messages) {
-  // if the 'messages' array is empty, the nextId is 0
-  // if the 'messages' array is not empty, the nextId is the last item's id plus 1.
-  return messages.length ? messages[messages.length - 1].id + 1 : 0
-}
-
-function createMessage(text, messageId) {
-  return {
-    id: messageId,
-    userName: 'Myself',
-    text: text,
-    timestamp: new Date()
-  };
-}
+import { nextId, createMessage } from './input-data'
 
 
 class App extends Component {
@@ -28,94 +13,106 @@ class App extends Component {
     peopleData: createFakeActivity(people, 6),
     selectedChannelId: null,
     selectedPersonId: null,
-    activeName: '',
   }
 
-
-  handleChannelSelection = (channel) => {
-    const { id, name } = channel
+  handleChannelSelection = (channelId) => (
     this.setState({
-      selectedChannelId: id,
-      seletedPersonId: null,
-      activeName: name
+      selectedChannelId: channelId,
+      selectedPersonId: null
     })
-  }
+  )
 
-  handlePersonSelection = (person) => {
-    const { id, name } = person
+  handlePersonSelection = (personId) => (
     this.setState({
-      selectedPersonId: id,
       selectedChannelId: null,
-      activeName: name
+      selectedPersonId: personId
     })
-  }
+  )
 
   addMessage = (e) => {
+    // when press 'enter', get e.target.value --- the text 
+    // call handleSendMessage to add the new message to state.data
     if (e.key === 'Enter') {
         const text = e.target.value
-        this.handleAddMessage(text)
+        this.handleSendMessage(text)
         e.target.value=''
     }
   }
 
-  handleAddMessage = (text) => { 
+  handleSendMessage = (text) => { 
       const { selectedChannelId, selectedPersonId, channelsData, peopleData } = this.state
 
       if (selectedChannelId) {
-        const id = nextId(channelsData[selectedChannelId])
-        const message = createMessage(text, id)
         this.setState({
           ...this.state,
-          channelsData:  {
+          channelsData: {
             ...channelsData,
-            [selectedChannelId]: [...channelsData[selectedChannelId], message]
+            [selectedChannelId]: [...channelsData[selectedChannelId], createMessage(text, nextId(channelsData[selectedChannelId]))]
           }
         })
       }
       
       if (selectedPersonId) {
-        const id = nextId(peopleData[selectedPersonId])
-        const message = createMessage(text, id)
         this.setState({
           ...this.state,
           peopleData:  {
             ...peopleData,
-            [selectedPersonId]: [...peopleData[selectedPersonId], message]
+            [selectedPersonId]: [...peopleData[selectedPersonId], createMessage(text, nextId(peopleData[selectedPersonId]))]
           }
         })
       }
   }
 
-  renderMessages = ( ) => {
-    const { selectedChannelId, selectedPersonId, peopleData, channelsData } = this.state
+  renderMessages = () => {
+    const { channelsData, peopleData, selectedChannelId, selectedPersonId} = this.state
     
-    if (selectedChannelId) {
+    // show reminder if no channels or user is chosen 
+    if (!selectedChannelId && !selectedPersonId) {
       return (
-        <Messages messages={channelsData[selectedChannelId]} >
+        <div className='select-reminder'>
+          Please select a channel or user from the left.
+        </div>
+      )
+    } 
+
+    //choose messages array respectively when a channel or a user is selected
+    let messages = []
+
+    if (selectedChannelId) {
+      messages = channelsData[selectedChannelId]
+    }
+
+    if (selectedPersonId) {
+      messages = peopleData[selectedPersonId]
+    }
+
+
+    if (messages.length === 0 ) {
+    // show empty reminder if no message
+      return (
+          <div>
+              <div className='empty-reminder'>
+                  No message.
+                  <br/>
+                  Why not add some messages?
+              </div>
+              <MessageInput onAddMessage={this.addMessage}/>
+          </div>
+      )
+    } else {
+    // show messages if there are messages
+      return (
+        <Messages messages={messages}>
           <MessageInput onAddMessage={this.addMessage}/>
         </Messages>
       )
-    } 
-   
-    if (selectedPersonId) {
-      return (
-        <Messages messages={peopleData[selectedPersonId]}>
-          <MessageInput onAddMessage={this.addMessage}/>
-        </Messages >
-      )
-    } 
-    
-    else {
-      return (
-        <div className='select-reminder'>
-          Please select a channel or person from the left.
-        </div>
-      )
     }
   }
-  render() {
-    const { activeName } = this.state
+    
 
+  render() {
+    const { selectedChannelId, selectedPersonId } = this.state
+    
     return (
       <div className="app">
         <SideBar 
@@ -123,10 +120,11 @@ class App extends Component {
           people={people}
           onChannelSelect={this.handleChannelSelection}
           onPersonSelect={this.handlePersonSelection}
-          activeName={activeName}
+          selectedChannelId={selectedChannelId}
+          selectedPersonId={selectedPersonId}
         />
         <div className='board'>
-          {this.renderMessages()}    
+          {this.renderMessages()}
         </div>
       </div>
     );

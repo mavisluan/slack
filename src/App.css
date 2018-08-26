@@ -2,9 +2,10 @@
   display: inline-flex;
   flex: 1;
 }
+
 .side-bar {
   background-color: #364A73;
-  min-height: 700px;
+  min-height: 780px;
   min-width: 260px;
   color: white;
   overflow-y: auto;
@@ -30,11 +31,19 @@
 }
 
 .select-reminder {
-  align-self: center;
+  margin-top: 100px;
+  margin-left: 50px;
   font-size: 30px;
   color: darkcyan;
 }
 
+.empty-reminder {
+  margin-top: 100px;
+  margin-left: 50px;
+  font-size: 30px;
+  color: gray;
+  text-align: center
+}
 .board {
   display: flex;
   flex-direction: column;

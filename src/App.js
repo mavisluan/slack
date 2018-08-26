@@ -3,6 +3,7 @@ import './App.css';
 import SideBar from './SideBar'
 import MessageInput from './MessageInput'
 import Messages from './Messages'
+import SelectReminder from './SelectReminder'
 import { channels, people, createFakeActivity } from './static-data'
 import { nextId, createMessage } from './input-data'
 
@@ -30,8 +31,6 @@ class App extends Component {
   )
 
   addMessage = (e) => {
-    // when press 'enter', get e.target.value --- the text 
-    // call handleSendMessage to add the new message to state.data
     if (e.key === 'Enter') {
         const text = e.target.value
         this.handleSendMessage(text)
@@ -68,43 +67,17 @@ class App extends Component {
     
     // show reminder if no channels or user is chosen 
     if (!selectedChannelId && !selectedPersonId) {
-      return (
-        <div className='select-reminder'>
-          Please select a channel or user from the left.
-        </div>
-      )
-    } 
-
-    //choose messages array respectively when a channel or a user is selected
-    let messages = []
-
-    if (selectedChannelId) {
-      messages = channelsData[selectedChannelId]
-    }
-
-    if (selectedPersonId) {
-      messages = peopleData[selectedPersonId]
-    }
-
-
-    if (messages.length === 0 ) {
-    // show empty reminder if no message
-      return (
-          <div>
-              <div className='empty-reminder'>
-                  No message.
-                  <br/>
-                  Why not add some messages?
-              </div>
-              <MessageInput onAddMessage={this.addMessage}/>
-          </div>
-      )
+      return <SelectReminder />
     } else {
-    // show messages if there are messages
+    // show selected channel's or user's messages respectively
+      const messages = 
+      (selectedChannelId) ? channelsData[selectedChannelId] : peopleData[selectedPersonId]
+      
       return (
-        <Messages messages={messages}>
+        <div>
+          <Messages messages={messages}  />
           <MessageInput onAddMessage={this.addMessage}/>
-        </Messages>
+        </div>
       )
     }
   }

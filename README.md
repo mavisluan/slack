@@ -1,6 +1,6 @@
 ## Slack Project
 
-- This is a simple slack web app, built with ReactJS.
+This is a simple slack web app, built with ReactJS.
 
 
 ## App Functionality

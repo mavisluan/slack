@@ -1,9 +1,9 @@
 ## Slack Project
 
-- This is a simple slack web app.
+- This is a simple slack web app, built with ReactJS.
 
 
-## App Functions
+## App Functionality
 
 Users will be able to 
 - see a list of Channels and Users on the SideBar 
@@ -17,7 +17,7 @@ Users will be able to
 ![](src/slack_project.png )
 
 
-## Instructions for installment
+## Installation Instructions
 
 - clone my repo git clone https://github.com/mavisluan/slack.git
 - install all project dependencies with yarn install

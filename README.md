@@ -19,6 +19,7 @@ Users will be able to
 
 ## Installation Instructions
 
-- clone my repo git clone https://github.com/mavisluan/slack.git
-- install all project dependencies with yarn install
-- start the development server with yarn start
+- git clone https://github.com/mavisluan/slack.git
+- cd slack
+- yarn install
+- yarn start

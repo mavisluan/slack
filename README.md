@@ -14,7 +14,7 @@ Users will be able to
 
 ## Project Screenshot 
 
-![](src/slack_project.png )
+<img src='src/slack_project.png' width='700'>
 
 
 ## Installation Instructions
